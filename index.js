@@ -12,6 +12,11 @@ import {
 
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
+// ListView uses ScrollView proptypes for style props
+// ScrollView uses ViewPropTypes for style props
+// ListView.propTypes can be undefined in tests
+const ListViewPropTypes = ListView.propTypes || ViewPropTypes;
+
 class Autocomplete extends Component {
   static propTypes = {
     ...TextInput.propTypes,
@@ -49,7 +54,7 @@ class Autocomplete extends Component {
     /**
      * These style will be applied to the result list.
      */
-    listStyle: ListView.propTypes.style,
+    listStyle: ListViewPropTypes.style,
     /**
      * `onShowResults` will be called when list is going to
      * show/hide results.
